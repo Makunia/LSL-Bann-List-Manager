@@ -30,15 +30,7 @@ default
     {
         ReadNotecard(); //Pass off to the read function.
     }
-    
-    changed(integer change)
-    {
-        if(change & CHANGED_INVENTORY)
-        { //The object's inventory just changed - the notecard could have been modified!
-            ReadNotecard();
-        }
-    }
- 
+     
     dataserver(key query_id, string data)
     {
         if (query_id == notecardQueryId)
