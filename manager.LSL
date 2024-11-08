@@ -26,7 +26,7 @@ ReadNotecard()
  
 default
 {
-    state_entry()
+     touch_start(integer detected)
     {
         ReadNotecard(); //Pass off to the read function.
     }
@@ -45,9 +45,10 @@ default
         {
             if (data == EOF) //Reached end of notecard (End Of File).
             {
-               llSay(0,"Done reading notecard, read " + (string) notecardLine + " notecard lines. Start now with bann!(just a test)");
+               llSay(0,"Done reading notecard, read " + (string) notecardLine + " notecard lines. Start now with bann!");
               //  llAddToLandBanList(,0.0); //Notify user.
                 llSay(0,"=== Banned UUIDs: " + notecardName + " ===\n" + llDumpList2String(notecardData,"\n"));
+llResetScript();
                 //Dump the contents of the notecard (for testing purposes).
             }
             else
@@ -60,7 +61,8 @@ default
                 }
                 notecardData += data; //Add the line being read to a new entry on the list.
                 ++notecardLine; //Increment line number (read next line).
-                notecardQueryId = llGetNotecardLine(notecardName, notecardLine); //Query the dataserver for the next notecard line.
+                notecardQueryId = llGetNotecardLine(notecardName, notecardLine);
+                  //Query the dataserver for the next notecard line.
             }
         }
     }
